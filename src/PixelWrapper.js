@@ -45,15 +45,29 @@ class PixelWrapper extends React.Component{
     render(){
         const {load, addResponseEventListener, removeResponseEventListener, logs} = this.state;
         return(
-        <div style={style}>
-            <PixelWindow load={load} />
-            <PixelLogWindow 
-                addResponseEventListener={addResponseEventListener} 
-                removeResponseEventListener={removeResponseEventListener}
-                logs={logs}
-            />
-            <button onClick={()=>this.execPrintString("1")}>Button</button>
-        </div>
+            <div className={classes.root}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} sm={9}>
+                        <Paper className={classes.paper}>
+                          <PixelWindow load={load} />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6} sm={3}>
+                        <Paper className={classes.paper}>
+                            <PixelLogWindow 
+                            addResponseEventListener={addResponseEventListener} 
+                            removeResponseEventListener={removeResponseEventListener}
+                            logs={logs}
+                            />
+                        </Paper>
+                    </Grid>
+                    <Grid item xs={6} sm={12}>
+                        <Paper className={classes.paper}>
+                            <button onClick={()=>this.execPrintString("1")}>C2 xs=6 sm=12</button>
+                        </Paper>
+                    </Grid>
+                </Grid>
+            </div>
         )
     }
 }
