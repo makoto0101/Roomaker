@@ -13,20 +13,8 @@ code {
 }
 
 #player{
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-}
-
-#playerwrapper {
-  position: relative;
   width: 100%;
+  max-width: 100%;
 }
 
-#playerwrapper:before {
-  content:"";
-  display: block;
-  padding-top: 75%; /* 高さを幅の75%に固定 */
-}
+
