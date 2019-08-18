@@ -56,7 +56,7 @@ class PixelWrapper extends React.Component{
             <div className={classes.root}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} sm={9}>
-                        <Paper className={classes.paper}>
+                        <Paper className='playerwrapper'>
                            <PixelWindow load={load}/>
                         </Paper>
                     </Grid>
