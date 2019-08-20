@@ -1,7 +1,7 @@
 import React from 'react';
 import PixelWindow from './PixelWindow';
 import PixelLogWindow from './PixelLogWindow';
-import GridLayout from './GridLayout';
+import InfoBarGrid from './InfoBarGrid';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -61,7 +61,9 @@ class PixelWrapper extends React.Component{
                         </Paper>
                     </Grid>
                     <Grid item xs={6} sm={3}>
-                        <Paper className={classes.paper}>C1 xs=6 sm=3</Paper>
+                        <Paper className={classes.paper}>
+                            <InfoBarGrid/>
+                        </Paper>
                     </Grid>
                     <Grid item xs={6} sm={12}>
                         <Paper className={classes.paper}>C2 xs=6 sm=12</Paper>

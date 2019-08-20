@@ -3,10 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 
-import PixelWindow from './PixelWindow';
-import PixelLogWindow from './PixelLogWindow';
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
@@ -18,22 +14,27 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function FullWidthGrid(props) {
+export default function InfobarGrid() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={9}>
-          <Paper className={classes.paper}>
-              <PixelWindow load={props.load}/>
-          </Paper>
+        <Grid item xs={4} sm={12}>
+          <img src=""/>
+          <Paper className={classes.paper}>xs=12 sm=4</Paper>
         </Grid>
-        <Grid item xs={6} sm={3}>
-          <Paper className={classes.paper}>C1 xs=6 sm=3</Paper>
+        <Grid item xs={4} sm={12}>
+          <Grid>aaa</Grid>
+          <Grid>aaa</Grid>
+          <Grid>aaa</Grid>
+          <Paper className={classes.paper}>xs=12 sm=4</Paper>
         </Grid>
-        <Grid item xs={6} sm={12}>
-          <Paper className={classes.paper}>C2 xs=6 sm=12</Paper>
+        <Grid item xs={4} sm={12}>
+          <Grid>bbb</Grid>
+          <Grid>bbb</Grid>
+          <Grid>bbb</Grid>
+          <Paper className={classes.paper}>xs=12 sm=4</Paper>
         </Grid>
       </Grid>
     </div>
