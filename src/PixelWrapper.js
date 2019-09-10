@@ -2,10 +2,14 @@ import React from 'react';
 import PixelWindow from './PixelWindow';
 import PixelLogWindow from './PixelLogWindow';
 import InfoBarGrid from './InfoBarGrid';
+import InfomationCard from './InfomationCard';
+import Appbar from './Appbar';
+import BreadCrumbs from './BreadCrumbs';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
 
 class PixelWrapper extends React.Component{
@@ -54,21 +58,25 @@ class PixelWrapper extends React.Component{
 
         return(
             <div className={classes.root}>
-                <Grid container spacing={3}>
-                    <Grid item xs={12} sm={9}>
-                        <Paper className='playerwrapper'>
-                           <PixelWindow load={load}/>
-                        </Paper>
-                    </Grid>
-                    <Grid item xs={12} sm={3}>
-                        <Paper className='sidebar'>
+                <Container maxWidth="100%">
+                    <Appbar/>
+                    <BreadCrumbs/>
+                    <Grid container spacing={3}>
+                        <Grid item xs={12} sm>
+                            <Paper className='playerwrapper'>
+                               <PixelWindow load={load}/>
+                            </Paper>
+                        </Grid>
+                        <Grid item xs={12} sm={4} className='sidebar'>
                             <InfoBarGrid/>
-                        </Paper>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={12} sm={12}>
-                        <Paper className={classes.paper}>C2 xs=6 sm=12</Paper>
+                    <Grid>
+                        <Grid item xs={12} sm={9}>
+                            <Paper className={classes.paper}>C2 xs=12 sm=9</Paper>
+                        </Grid>
                     </Grid>
-                </Grid>
+                </Container>
             </div>
 
         //<div style={style}>
@@ -93,12 +101,13 @@ const style = {
 
 const classes = makeStyles(theme => ({
     root: {
-      flexGrow: 1,
+      flex:0,
     },
     paper: {
       padding: theme.spacing(2),
       textAlign: 'center',
       color: theme.palette.text.secondary,
     },
+
   }));
 

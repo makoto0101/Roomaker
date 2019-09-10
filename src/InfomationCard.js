@@ -16,10 +16,7 @@ import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
-import Markdown from './Markdown';
-import post1 from './blog-post.1.md';
-import post2 from './blog-post.2.md';
-import post3 from './blog-post.3.md';
+
 
 function Copyright() {
   return (
@@ -84,39 +81,8 @@ const useStyles = makeStyles(theme => ({
   cardDetails: {
     flex: 1,
   },
-  cardMedia: {
-    width: 160,
-  },
-  markdown: {
-    ...theme.typography.body2,
-    padding: theme.spacing(3, 0),
-  },
-  sidebarAboutBox: {
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[200],
-  },
-  sidebarSection: {
-    marginTop: theme.spacing(3),
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    marginTop: theme.spacing(8),
-    padding: theme.spacing(6, 0),
-  },
-}));
 
-const sections = [
-  'Technology',
-  'Design',
-  'Culture',
-  'Business',
-  'Politics',
-  'Opinion',
-  'Science',
-  'Health',
-  'Style',
-  'Travel',
-];
+}));
 
 const featuredPosts = [
   {
@@ -125,15 +91,9 @@ const featuredPosts = [
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
   },
-  {
-    title: 'Post title',
-    date: 'Nov 11',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-  },
 ];
 
-const posts = [post1, post2, post3];
+
 
 const archives = [
   'March 2020',
@@ -162,7 +122,7 @@ export default function Blog() {
           {/* Sub featured posts */}
           <Grid container spacing={4} className={classes.cardGrid}>
             {featuredPosts.map(post => (
-              <Grid item key={post.title} xs={12} md={6}>
+              <Grid item key={post.title} xs={12}>
                 <CardActionArea component="a" href="#">
                   <Card className={classes.card}>
                     <div className={classes.cardDetails}>
