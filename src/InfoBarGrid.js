@@ -24,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
   },
   button: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(0),
     float:"right",
   },
   input: {
@@ -64,18 +64,41 @@ const useStyles = makeStyles(theme => ({
     cardDetails: {
       flex: 1,
     },
+    cardContentItem:{
+      float:'right',
+    },
+    link: {
+      margin: theme.spacing(1),
+    },
+
 
   },
 }));
 
 const featuredPosts = [
   {
-    title: 'Featured post',
-    date: 'Nov 12',
+    title: 'Item Name Infomation',
+    Maker: 'Maker',
     description:
       'This is a wider card with supporting text below as a natural lead-in to additional content.',
+    sizeValiation :[
+      {size: '100*200',},
+      {size: '100*300',},
+      {size: '200*200',},
+    ],
+    colorValiation:[{
+        color:"red",
+      },
+      {color:"brown",},
+    ],
   },
 ];
+
+const dudUrl = 'javascript:;';
+
+
+
+
 
 
 export default function InfobarGrid() {
@@ -87,8 +110,9 @@ export default function InfobarGrid() {
       <Grid container spacing={4} className={classes.cardGrid}>
        {featuredPosts.map(post => (
          <Grid item key={post.title} xs={12}>
-           <CardActionArea component="a" href="#">
              <Card className={classes.card}>
+               <Grid container>
+                <Grid item xs={6} sm={12}>
                 <Hidden xsup>
                  <CardMedia
                    className={classes.selectFeaturedPost}
@@ -96,24 +120,62 @@ export default function InfobarGrid() {
                    title="Image title"
                  />
                 </Hidden>
-                <div className={classes.cardDetails}>
+                </Grid>
+                <Grid className={classes.cardDetails} container item xs={6} sm={12}>
                   <CardContent>
-                   <Typography component="h2" variant="h5">
-                     {post.title}
-                   </Typography>
-                   <Typography variant="subtitle1" color="textSecondary">
-                     {post.date}
-                   </Typography>
-                   <Typography variant="subtitle1" paragraph>
-                     {post.description}
-                   </Typography>
-                   <Typography variant="subtitle1" color="primary">
-                     Continue reading...
-                   </Typography>
+                    <Grid container>
+                    <Grid item xs={12}>
+                      <Typography component="h2" variant="h5">
+                        {post.title}
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} direction="row">
+                      <Typography variant="subtitle1" color="textSecondary">
+                        <Link href={dudUrl} className={classes.link}>
+                          {post.Maker}
+                        </Link>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} direction="row">
+                      <Typography variant="subtitle1" paragraph>
+                        {post.description}
+                      </Typography>
+                    </Grid>
+
+                  {/* Size selection */}
+                    <Grid item xs={12}>
+                      <Grid><Typography> Item Size</Typography></Grid>
+                      <Grid container spacing={1} className={classes.cardGrid}>
+                        {post.sizeValiation.map(sizelist => (
+                           <Grid item key={sizelist.title} direction="row">
+                              <Button variant="outlined" size="small" className={classes.button}>
+                                {sizelist.size}
+                              </Button>
+                           </Grid>
+                          ))}
+                      </Grid>
+                    </Grid>
+                  {/* Size selection */}
+
+                  {/* Color selection */}
+                    <Grid item xs={12}>
+                      <Grid><Typography> Item Color</Typography></Grid>
+                      <Grid container spacing={1} className={classes.cardGrid}>
+                        {post.colorValiation.map(colorlist => (
+                           <Grid item key={colorlist.title} direction="row">
+                              <Button variant="outlined" size="small" className={classes.button}>
+                                {colorlist.color}
+                              </Button>
+                           </Grid>
+                          ))}
+                      </Grid>
+                    </Grid>
+                  {/* Color selection */}
+                  </Grid>
                   </CardContent>
-                </div>
+                </Grid>
+                </Grid>
              </Card>
-           </CardActionArea>
          </Grid>
         ))}
       </Grid>
