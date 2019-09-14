@@ -5,6 +5,7 @@ import InfoBarGrid from './InfoBarGrid';
 import InfomationCard from './InfomationCard';
 import Appbar from './Appbar';
 import BreadCrumbs from './BreadCrumbs';
+import ListTab from './listTab'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -66,6 +67,7 @@ class PixelWrapper extends React.Component{
                             <Paper className='playerwrapper'>
                                <PixelWindow load={load}/>
                             </Paper>
+                            <ListTab/>
                         </Grid>
                         <Grid item xs={12} sm={4} className='sidebar'>
                             <InfoBarGrid/>
