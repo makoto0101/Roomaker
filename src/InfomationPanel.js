@@ -76,22 +76,48 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const featuredPosts = [
-  {
-    title: 'Item Name Infomation',
-    Maker: 'Maker',
-    description:
-      'This is a wider card with supporting text below as a natural lead-in to additional content.',
-    sizeValiation :[
-      {size: '100*200',},
-      {size: '100*300',},
-      {size: '200*200',},
-    ],
-    colorValiation:[{
-        color:"red",
-      },
-      {color:"brown",},
-    ],
-  },
+  /* Index 0 */
+  [
+    {
+      index:"0",
+      image:"https://source.unsplash.com/user/erondu",
+      title: 'Item Name Infomation',
+      Maker: 'Maker',
+      description:
+        'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      sizeValiation :[
+        {size: '100*200',},
+        {size: '100*300',},
+        {size: '200*200',},
+      ],
+      colorValiation:[{
+          color:"red",
+        },
+        {color:"brown",},
+      ],
+    },
+  ],
+  /* Index 1 */
+  [
+    {
+      index:"1",
+      image:"https://source.unsplash.com/user/erondu",
+      title: 'Lets try Change Item',
+      Maker: 'Room Maker',
+      description:
+        'This is a wider card with supporting text below as a natural lead-in to additional content.',
+      sizeValiation :[
+        {size: '1100*1200',},
+        {size: '1100*1300',},
+        {size: '1200*1200',},
+      ],
+      colorValiation:[{
+          color:"blue",
+        },
+        {color:"black",},
+      ],
+    },
+  ],
 ];
 
 const dudUrl = 'javascript:;';
@@ -101,14 +127,15 @@ const dudUrl = 'javascript:;';
 
 
 
-export default function InfobarGrid() {
+export default function InfomationPanel(props) {
   const classes = useStyles();
+  const Infomations = featuredPosts[props.selectedItemIndex];
 
   return (
     <React.Fragment>
       <CssBaseline />
       <Grid container spacing={4} className={classes.cardGrid}>
-       {featuredPosts.map(post => (
+       {Infomations.map(post => (
          <Grid item key={post.title} xs={12}>
              <Card className={classes.card}>
                <Grid container>
@@ -116,7 +143,7 @@ export default function InfobarGrid() {
                 <Hidden xsup>
                  <CardMedia
                    className={classes.selectFeaturedPost}
-                   image="https://source.unsplash.com/user/erondu"
+                   image={post.image}
                    title="Image title"
                  />
                 </Hidden>

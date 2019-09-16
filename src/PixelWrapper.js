@@ -1,16 +1,20 @@
 import React from 'react';
 import PixelWindow from './PixelWindow';
 import PixelLogWindow from './PixelLogWindow';
-import InfoBarGrid from './InfoBarGrid';
+import InfoBarGrid from './InfomationPanel';
 import InfomationCard from './InfomationCard';
 import Appbar from './Appbar';
 import BreadCrumbs from './BreadCrumbs';
 import ListTab from './listTab'
+import ExtensionPanel from './ExtensionPanel'
+import SingleGridLine from './singleGridLine'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import { NONAME } from 'dns';
+import InfomationPanel from './InfomationPanel';
 
 
 class PixelWrapper extends React.Component{
@@ -19,6 +23,7 @@ class PixelWrapper extends React.Component{
         this.state={
             load: window.load,
             logs: [],
+            selectedItemIndex:"0",
             addResponseEventListener: window.addResponseEventListener,
             removeResponseEventListener: window.removeResponseEventListener,
             emitUIInteraction: window.emitUIInteraction,
@@ -29,7 +34,8 @@ class PixelWrapper extends React.Component{
     myHandleResponseFunction =(data)=>{
         console.log(data);
         this.setState({
-            logs: this.state.logs.concat(data)
+            logs: this.state.logs.concat(data),
+            selectedItemIndex:data,
         });
     }
 
@@ -55,7 +61,7 @@ class PixelWrapper extends React.Component{
     
 
     render(){
-        const {load, addResponseEventListener, removeResponseEventListener, logs} = this.state;
+        const {load, addResponseEventListener, removeResponseEventListener, logs, selectedItemIndex} = this.state;
 
         return(
             <div className={classes.root}>
@@ -67,10 +73,10 @@ class PixelWrapper extends React.Component{
                             <Paper className='playerwrapper'>
                                <PixelWindow load={load}/>
                             </Paper>
-                            <ListTab/>
+                            <ExtensionPanel/>
                         </Grid>
                         <Grid item xs={12} sm={4} className='sidebar'>
-                            <InfoBarGrid/>
+                            <InfomationPanel selectedItemIndex={selectedItemIndex}/>
                         </Grid>
                     </Grid>
                     <Grid>
@@ -79,6 +85,8 @@ class PixelWrapper extends React.Component{
                         </Grid>
                     </Grid>
                 </Container>
+                <button onClick={()=>{this.setState({selectedItemIndex:"0"})}}>0</button>
+                <button onClick={()=>{this.setState({selectedItemIndex:"1"})}}>1</button>
             </div>
 
         //<div style={style}>
