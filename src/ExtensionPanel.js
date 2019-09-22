@@ -63,7 +63,7 @@ export default function DetailedExpansionPanel() {
             <Typography className={classes.heading}>Special Item</Typography>
           </div>
           <div className={classes.column}>
-            <Typography className={classes.secondaryHeading}>Select trip destination</Typography>
+            <Typography className={classes.secondaryHeading}></Typography>
           </div>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails className={classes.details}>

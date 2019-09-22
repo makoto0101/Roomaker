@@ -17,9 +17,7 @@ class PixelWindow extends React.Component{
 
     render(){
         return(
-        <div className = 'pixelwindowwrapper'>
             <div id ="player" className="fixed-size" />
-        </div>
         )
     }
 }

@@ -69,18 +69,16 @@ class PixelWrapper extends React.Component{
                     <Appbar/>
                     <BreadCrumbs/>
                     <Grid container spacing={3}>
-                        <Grid item xs={12} sm>
-                            <Paper className='playerwrapper'>
-                               <PixelWindow load={load}/>
-                            </Paper>
+                        <Grid item xs={12} sm={9}>
+                            <PixelWindow load={load}/>
                             <ExtensionPanel/>
                         </Grid>
-                        <Grid item xs={12} sm={4} className='sidebar'>
+                        <Grid item xs={12} sm={3} className='sidebar'>
                             <InfomationPanel selectedItemIndex={selectedItemIndex}/>
                         </Grid>
                     </Grid>
                     <Grid>
-                        <Grid item xs={12} sm={9}>
+                        <Grid item xs={4} sm={12}>
                             <Paper className={classes.paper}>C2 xs=12 sm=9</Paper>
                         </Grid>
                     </Grid>

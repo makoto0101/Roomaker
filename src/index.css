@@ -17,6 +17,8 @@ code {
   height:75vw;
   margin-top:0px;
   background:#000000;
+  z-index: 10;
+  position: relative;
 }
 
 /*sidebar*/
