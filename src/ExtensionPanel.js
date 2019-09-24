@@ -16,6 +16,7 @@ import SingleGridLine from './singleGridLine'
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
+    paddingTop :"2px",
   },
   heading: {
     fontSize: theme.typography.pxToRem(15),

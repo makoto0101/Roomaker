@@ -139,7 +139,7 @@ export default function InfomationPanel(props) {
          <Grid item key={post.title} xs={12}>
              <Card className={classes.card}>
                <Grid container>
-                <Grid item xs={6} sm={12}>
+                <Grid item xs={4} sm={12}>
                 <Hidden xsup>
                  <CardMedia
                    className={classes.selectFeaturedPost}
@@ -148,7 +148,7 @@ export default function InfomationPanel(props) {
                  />
                 </Hidden>
                 </Grid>
-                <Grid className={classes.cardDetails} container item xs={6} sm={12}>
+                <Grid className={classes.cardDetails} container item xs={8} sm={12}>
                   <CardContent>
                     <Grid container>
                     <Grid item xs={12}>
