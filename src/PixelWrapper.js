@@ -64,7 +64,6 @@ class PixelWrapper extends React.Component{
         this.state.load();
     }
 
-    
 
     render(){
         const {load, addResponseEventListener, removeResponseEventListener, logs, selectedItemIndex} = this.state;
@@ -76,8 +75,8 @@ class PixelWrapper extends React.Component{
                 {/*<BreadCrumbs/>*/}
                 <main>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} sm={9}>
-                        <div id ="player" className="fixed-size" />
+                    <Grid item xs={12} sm={6}>
+                        <div id ="player" className="fixed-size"/>
                         <ExtensionPanel/>
                     </Grid>
                     <Grid item xs={12} sm={3} className='sidebar'>

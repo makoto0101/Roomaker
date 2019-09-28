@@ -412,7 +412,7 @@ var inputOptions = {
 	// user drags with their mouse. We may perform the reverse; a single finger
 	// touch may be converted into a mouse drag UE4 side. This allows a
 	// non-touch application to be controlled partially via a touch device.
-	fakeMouseWithTouches: false
+	fakeMouseWithTouches: true,
 };
 
 function resizePlayerStyleToFillWindow(playerElement) {
@@ -477,7 +477,9 @@ function resizePlayerStyle(event) {
 
 	// Calculating and normalizing positions depends on the width and height of
 	// the player.
+	// fix for touch position
 	playerElementClientRect = playerElement.getBoundingClientRect();
+	//playerElementClientRect = playerElement.offset();
 	setupNormalizeAndQuantize();
 
 	if (playerElement.classList.contains('fixed-size'))
@@ -625,7 +627,8 @@ function requestQualityControl() {
 	sendInputData(new Uint8Array([MessageType.RequestQualityControl]).buffer);
 }
 
-var playerElementClientRect = undefined;
+//var playerElementClientRect = undefined;
+var playerElementClientRect = document.getElementById('player').getBoundingClientRect();
 var normalizeAndQuantizeUnsigned = undefined;
 var normalizeAndQuantizeSigned = undefined;
 
@@ -906,6 +909,7 @@ function registerLockedMouseEvents(playerElement) {
 	}
 }
 
+// I want to fix!!
 // A hovering mouse works by the user clicking the mouse button when they want
 // the cursor to have an effect over the video. Otherwise the cursor just
 // passes over the browser.
@@ -984,8 +988,11 @@ function registerTouchEvents(playerElement) {
 		let byte = 2;
 		for (let t = 0; t < touches.length; t++) {
 			let touch = touches[t];
+			// fix for touch position
 			let x = touch.clientX - playerElement.offsetLeft;
 			let y = touch.clientY - playerElement.offsetTop;
+			//let x = touch.pageX - playerElement.offsetLeft;
+			//let y = touch.pageY - playerElement.offsetTop;
 			if (print_inputs) {
 				console.log(`F${fingerIds[touch.identifier]}=(${x}, ${y})`);
 			}
@@ -1011,8 +1018,11 @@ function registerTouchEvents(playerElement) {
 				let firstTouch = e.changedTouches[0];
 				finger = {
 					id: firstTouch.identifier,
+					// fix for touch position
 					x: firstTouch.clientX - playerElementClientRect.left,
 					y: firstTouch.clientY - playerElementClientRect.top
+					//x: firstTouch.pageX - playerElementClientRect.left,
+					//y: firstTouch.pageY - playerElementClientRect.top
 				};
 				// Hack: Mouse events require an enter and leave so we just
 				// enter and leave manually with each touch as this event
@@ -1027,8 +1037,11 @@ function registerTouchEvents(playerElement) {
 			for (let t = 0; t < e.changedTouches.length; t++) {
 				let touch = e.changedTouches[t];
 				if (touch.identifier === finger.id) {
+					// fix for touch position
 					let x = touch.clientX - playerElementClientRect.left;
 					let y = touch.clientY - playerElementClientRect.top;
+					//let x = touch.pageX - playerElementClientRect.left;
+					//let y = touch.pageY - playerElementClientRect.top;
 					emitMouseUp(MouseButton.MainButton, x, y);
 					// Hack: Manual mouse leave event.
 					playerElement.onmouseleave(e);
@@ -1043,8 +1056,11 @@ function registerTouchEvents(playerElement) {
 			for (let t = 0; t < e.touches.length; t++) {
 				let touch = e.touches[t];
 				if (touch.identifier === finger.id) {
+					// fix for touch position
 					let x = touch.clientX - playerElementClientRect.left;
 					let y = touch.clientY - playerElementClientRect.top;
+					//let x = touch.pageX - playerElementClientRect.left;
+					//let y = touch.pageY - playerElementClientRect.top;
 					emitMouseMove(x, y, x - finger.x, y - finger.y);
 					finger.x = x;
 					finger.y = y;
