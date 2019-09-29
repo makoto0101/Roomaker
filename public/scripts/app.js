@@ -2,7 +2,7 @@
 
 var webRtcPlayerObj = null;
 var print_stats = false;
-var print_inputs = false;
+var print_inputs = ture;
 var connect_on_load = false;
 
 var is_reconnection = false;
@@ -917,17 +917,20 @@ function registerHoveringMouseEvents(playerElement) {
 	styleCursor = 'none';   // We will rely on UE4 client's software cursor.
 
 	playerElement.onmousemove = function (e) {
-		emitMouseMove(e.offsetX, e.offsetY, e.movementX, e.movementY);
+		//emitMouseMove(e.offsetX, e.offsetY, e.movementX, e.movementY);
+		emitMouseMove(e.pageX-offset.left, e.pageY-offset.top, e.movementX, e.movementY);
 		e.preventDefault();
 	}
 
 	playerElement.onmousedown = function (e) {
-		emitMouseDown(e.button, e.offsetX, e.offsetY);
+		//emitMouseDown(e.button, e.offsetX, e.offsetY);
+		emitMouseDown(e.button, e.pageX-offset.left, e.pageY-offset.top);
 		e.preventDefault();
 	};
 
 	playerElement.onmouseup = function (e) {
-		emitMouseUp(e.button, e.offsetX, e.offsetY);
+		//emitMouseUp(e.button, e.offsetX, e.offsetY);
+		emitMouseDown(e.button, e.pageX-offset.left, e.pageY-offset.top);
 		e.preventDefault();
 	};
 	
@@ -937,27 +940,32 @@ function registerHoveringMouseEvents(playerElement) {
 	// the mouse can get stuck.
 	// https://github.com/facebook/react/issues/5531
 	playerElement.oncontextmenu = function (e) {
-		emitMouseUp(e.button, e.offsetX, e.offsetY);
+		//emitMouseUp(e.button, e.offsetX, e.offsetY);
+		emitMouseUp(e.button, e.pageX-offset.left, e.pageY-offset.top);
 	}
 	
 	if ('onmousewheel' in playerElement) {
 		playerElement.onmousewheel = function (e) {
-			emitMouseWheel(e.wheelDelta, e.offsetX, e.offsetY);
+			//emitMouseWheel(e.wheelDelta, e.offsetX, e.offsetY);
+			emitMouseWheel(e.wheelDelta, e.pageX-offset.left, e.pageY-offset.top);
 			e.preventDefault();
 		}
 	} else {
 		playerElement.addEventListener('DOMMouseScroll', function (e) {
-			emitMouseWheel(e.detail * -120, e.offsetX, e.offsetY);
+			//emitMouseWheel(e.detail * -120, e.offsetX, e.offsetY);
+			emitMouseWheel(e.detail * -120, e.pageX-offset.left, e.pageY-offset.top);
 			e.preventDefault();
 		}, false)
 	}
 
 	playerElement.pressMouseButtons = function (e) {
-		pressMouseButtons(e.buttons, e.offsetX, e.offsetY);
+		//pressMouseButtons(e.buttons, e.offsetX, e.offsetY);
+		pressMouseButtons(e.buttons, e.pageX-offset.left, e.pageY-offset.top);
 	}
 
 	playerElement.releaseMouseButtons = function (e) {
-		releaseMouseButtons(e.buttons, e.offsetX, e.offsetY);
+		//releaseMouseButtons(e.buttons, e.offsetX, e.offsetY);
+		releaseMouseButtons(e.buttons, e.pageX-offset.left, e.pageY-offset.top);
 	}
 }
 	
